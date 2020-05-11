@@ -1,5 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:intl/intl.dart' as intl;
 
 class WorldTime {
   
@@ -7,7 +8,7 @@ class WorldTime {
   String time; //time in that location
   String flag; //URL for the flag image asset
   String url; //location url for API endpoints
-
+  
   //CONSTRUCTOR
   WorldTime({this.location,this.flag,this.url});
   Future<void> getTime() async {
@@ -22,7 +23,7 @@ class WorldTime {
       DateTime now = DateTime.parse(datetime);
 
       // Set the time Property
-      time = now.toString();
+      time = intl.DateFormat.jm().format(now);
     }
 
     catch (e){
