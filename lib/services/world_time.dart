@@ -10,24 +10,26 @@ class WorldTime {
 
   //CONSTRUCTOR
   WorldTime({this.location,this.flag,this.url});
+  Future<void> getTime() async {
+    try {
+      http.Response response = await http.get('http://worldtimeapi.org/api/timezone/$url');
+      Map data = jsonDecode(response.body);
 
-   Future<void> getTime() async {
+      //get date property from data
+      String datetime = data['datetime'];
 
-     
-    http.Response response = await http.get('http://worldtimeapi.org/api/timezone/$url');
-    Map data = jsonDecode(response.body);
+      //Create DateTime
+      DateTime now = DateTime.parse(datetime);
 
-    //get date property from data
-    String datetime = data['datetime'];
+      // Set the time Property
+      time = now.toString();
+    }
 
-    //Create DateTime
-    DateTime now = DateTime.parse(datetime);
-
-    // Set the time Property
-    time = now.toString();
+    catch (e){
+      print('caught error: $e');
+      time = 'Could not get time data';
+    }
   }
-
-
 
 }
 
