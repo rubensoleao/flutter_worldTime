@@ -7,8 +7,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  // Stores data imported from loading screen
+  Map data = {};
+
   @override
   Widget build(BuildContext context) {
+
+    // Assign data gotten from loading screen
+
+    data = ModalRoute.of(context).settings.arguments;
+    print(data);
     return Scaffold(
       body: SafeArea(child:
         Column(children: <Widget>[
