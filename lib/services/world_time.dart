@@ -10,7 +10,7 @@ class WorldTime {
   String url; //location url for API endpoints
   
   bool isDaytime; // T or F if daytime or not
-
+  
   //CONSTRUCTOR
   WorldTime({this.location,this.flag,this.url});
   Future<void> getTime() async {
