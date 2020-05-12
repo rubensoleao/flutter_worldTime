@@ -9,6 +9,8 @@ class WorldTime {
   String flag; //URL for the flag image asset
   String url; //location url for API endpoints
   
+  bool isDaytime; // T or F if daytime or not
+
   //CONSTRUCTOR
   WorldTime({this.location,this.flag,this.url});
   Future<void> getTime() async {
@@ -23,7 +25,9 @@ class WorldTime {
       DateTime now = DateTime.parse(datetime);
 
       // Set the time Property
+      isDaytime = now.hour > 6 && now.hour < 20 ? true : false;
       time = intl.DateFormat.jm().format(now);
+
     }
 
     catch (e){
